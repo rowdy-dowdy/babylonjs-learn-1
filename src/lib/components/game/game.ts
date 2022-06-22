@@ -1,4 +1,4 @@
-import { Scene, Engine, FreeCamera, Vector3, HemisphericLight, MeshBuilder } from 'babylonjs';
+import { Scene, Engine, FreeCamera, Vector3, HemisphericLight, MeshBuilder, StandardMaterial, Texture } from 'babylonjs';
 // import * as BABYLON{ Vector3 } from 'babylonjs';
 
 // class Playground {
@@ -61,6 +61,26 @@ export class Playground {
     const ball = MeshBuilder.CreateSphere("ball", {diameter: 1}, this.scene)
     ball.position = new Vector3(0,1,0)
 
+    ground.material = this.createGroundMaterial()
+    // ball.material = this.createBallMaterial()
+
     return scene
+  }
+
+  createGroundMaterial(): StandardMaterial {
+    const ground_mat = new StandardMaterial("ground_mat", this.scene)
+
+    const diffuseTex =  new Texture(
+      "/images/stone/broken_wall_diff_4k.jpg",
+      this.scene
+    )
+
+    ground_mat.diffuseTexture = diffuseTex
+
+    return ground_mat
+  }
+
+  createBallMaterial() {
+
   }
 }
